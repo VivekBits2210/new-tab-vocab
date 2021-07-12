@@ -16,7 +16,7 @@
                         <span class="card-title">{{word}}</span>
                         <div class="switch right" style="display: inline-block; align-content: right;">
                             <label>
-                                <input type="checkbox" ng-model="isStudyMode">
+                                <input type="checkbox" ng-model="isStudyMode" ng-change="changeMode(true)">
                                 <span class=" lever"></span>
                                 Study Mode
                             </label>
@@ -24,13 +24,25 @@
                         <div class="row" style="margin-bottom: 0px;">
                             <form class="col s12 offset-s3">
                                 <div class="input-field col s6 l6">
-                                    <input ng-if="isStudyMode" id="meaning" type="text" class="validate">
+                                    <input ng-model="$parent.enteredMeaning" ng-if="isStudyMode" id="meaning"
+                                        type="text" />
                                     <label ng-if="isStudyMode" for="meaning" class="active">What does it mean?</label>
                                     <div ng-if="isStudyMode==false" class="row">
                                         <p class="flow-text" style="font-size:1.2rem;">{{meaning}}</p>
                                     </div>
+                                    <div ng-if="isAnswerMode" class="row">
+                                        <p class="flow-text"
+                                            style="display: inline-block;font-size:1.2rem; color: grey;">
+                                            {{enteredMeaning}}</p>
+                                        <div class="switch right" style="display: inline-block; align-content: right;">
+                                            <br>Score<label style="color: green;">
+                                                {{score}}/5
+                                            </label>
+                                        </div>
+                                    </div>
                                     <div style="padding-top:1%;">
-                                        <a ng-if="isStudyMode" class="waves-effect waves-light brown btn"><i
+                                        <a ng-if="isStudyMode" class="waves-effect waves-light brown btn"
+                                            ng-click="$parent.submitMeaning()"><i
                                                 class="material-icons center">done</i></a>
                                         <a class="waves-effect waves-light brown btn" ng-click="nextWord()"><i
                                                 class="material-icons center">chevron_right</i></a>
@@ -43,7 +55,7 @@
 
                     </div>
                     <div ng-if="isStudyMode" class="card-action brown">
-                        <a class="btn-flat" ng-click="changeMode()">I DON'T KNOW</a>
+                        <a class="btn-flat" ng-click="changeMode(false)">I DON'T KNOW</a>
                     </div>
                 </div>
             </div>
