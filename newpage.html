@@ -2,33 +2,48 @@
 
 <head>
     <title>GRE Flashcard</title>
+    <script src="/lib/angular.min.js" type="text/javascript"></script>
+    <script src="/lib/materialize.min.js" type="text/javascript"></script>
+    <script src="/js/script.js" type="text/javascript"></script>
 </head>
 
 <body style="height:100%;background: url(background2.jpg)">
-    <div class=" container vertical-center" style="width:40%;">
+    <div class=" container vertical-center" style="width:40%;" ng-app="gre-chrome" ng-controller="HelloController">
         <div class="row" style="padding-top:2%">
             <div class="col s12 m12 valign center">
                 <div class="card white darken-1">
                     <div class="card-content valign center">
-                        <span class="card-title">Tenacity</span>
+                        <span class="card-title">{{word}}</span>
+                        <div class="switch right" style="display: inline-block; align-content: right;">
+                            <label>
+                                <input type="checkbox" ng-model="isStudyMode">
+                                <span class=" lever"></span>
+                                Study Mode
+                            </label>
+                        </div>
                         <div class="row" style="margin-bottom: 0px;">
                             <form class="col s12 offset-s3">
                                 <div class="input-field col s6 l6">
-                                    <input id="meaning" type="text" class="validate">
-                                    <label for="meaning" class="active">What does it mean?</label>
+                                    <input ng-if="isStudyMode" id="meaning" type="text" class="validate">
+                                    <label ng-if="isStudyMode" for="meaning" class="active">What does it mean?</label>
+                                    <div ng-if="isStudyMode==false" class="row">
+                                        <p class="flow-text" style="font-size:1.2rem;">{{meaning}}</p>
+                                    </div>
                                     <div style="padding-top:1%;">
-                                        <a class="waves-effect waves-light brown btn"><i
+                                        <a ng-if="isStudyMode" class="waves-effect waves-light brown btn"><i
                                                 class="material-icons center">done</i></a>
-                                        <a class="waves-effect waves-light brown btn"><i
+                                        <a class="waves-effect waves-light brown btn" ng-click="nextWord()"><i
                                                 class="material-icons center">chevron_right</i></a>
                                     </div>
                                 </div>
 
                             </form>
                         </div>
+
+
                     </div>
-                    <div class="card-action brown">
-                        <a href="#">I DON'T KNOW</a>
+                    <div ng-if="isStudyMode" class="card-action brown">
+                        <a class="btn-flat" ng-click="changeMode()">I DON'T KNOW</a>
                     </div>
                 </div>
             </div>
@@ -40,7 +55,6 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <!-- Compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <style>
     .vertical-center {
         margin: 0;
