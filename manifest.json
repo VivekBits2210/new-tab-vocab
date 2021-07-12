@@ -1,6 +1,6 @@
 {
     "manifest_version": 2,
-    "name": "A Trial Hello World Extension",
+    "name": "GRE Practice",
     "version": "0.1",
     "permissions": [
         "bookmarks",
@@ -8,16 +8,6 @@
         "sessions",
         "tabs",
         "chrome://favicon/"
-    ],
-    "content_scripts": [
-        {
-            "matches": [
-                "https://www.youtube.com/*"
-            ],
-            "js": [
-                "contentScript.js"
-            ]
-        }
     ],
     "background": {
         "scripts": [
@@ -29,7 +19,9 @@
     },
     "browser_action": {
         "default_icon": {
-            "32": "gre_icon.png"
+            "32": "gre_icon.png",
+            "48": "gre_icon.png",
+            "128": "gre_icon.png"
         }
     }
 }
