@@ -1,0 +1,35 @@
+{
+    "manifest_version": 2,
+    "name": "A Trial Hello World Extension",
+    "version": "0.1",
+    "permissions": [
+        "bookmarks",
+        "storage",
+        "sessions",
+        "tabs",
+        "chrome://favicon/"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "https://www.youtube.com/*"
+            ],
+            "js": [
+                "contentScript.js"
+            ]
+        }
+    ],
+    "background": {
+        "scripts": [
+            "backgroundScript.js"
+        ]
+    },
+    "chrome_url_overrides": {
+        "newtab": "newpage.html"
+    },
+    "browser_action": {
+        "default_icon": {
+            "32": "gre_icon.png"
+        }
+    }
+}
