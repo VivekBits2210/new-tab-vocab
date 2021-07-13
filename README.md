@@ -1,2 +1,2 @@
-# gre_chrome_extension
+# GRE Chrome extension
 New tab with vocab, chrome extension
