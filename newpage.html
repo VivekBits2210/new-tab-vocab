@@ -44,10 +44,13 @@
                                         </div> -->
                                     </div>
                                     <div style="padding-top:1%;">
+                                        <a ng-if="isThereAPrevious" class="waves-effect waves-light black btn"
+                                            ng-click="loadPreviousWord()"><i
+                                                class=" material-icons center">chevron_left</i></a>
                                         <a ng-if="isStudyMode" class="waves-effect waves-light black btn"
                                             ng-click="$parent.submitMeaning()"><i
                                                 class=" material-icons center">done</i></a>
-                                        <a class="waves-effect waves-light black btn" ng-click="nextWord()"><i
+                                        <a class="waves-effect waves-light black btn" ng-click="loadNextWord()"><i
                                                 class="material-icons center">chevron_right</i></a>
                                     </div>
                                 </div>

@@ -4,6 +4,12 @@ app.controller("HelloController", function ($scope, $http, focus) {
     var domain = 'http://server.eba-3vcize8p.us-west-2.elasticbeanstalk.com/';
     $scope.word = "";
     $scope.meaning = "";
+    $scope.isThereAPrevious = false;
+    $scope.previousWord = null;
+    $scope.previousMeaning = null;
+    $scope.nextWord = null;
+    $scope.nextMeaning = null;
+
     function fetchWord(response) {
         var data = response['data'];
         $scope.word = data['word'];
@@ -15,7 +21,6 @@ app.controller("HelloController", function ($scope, $http, focus) {
     $scope.changeMode = function (is_checkbox) {
         $scope.enteredMeaning = "";
         $scope.isAnswerMode = false;
-        console.log('changeMode before', $scope.isAnswerMode);
         if (is_checkbox == false) {
             $scope.switchOnStudyModeAfterPressingNext = true;
             $scope.isStudyMode = false;
@@ -25,25 +30,50 @@ app.controller("HelloController", function ($scope, $http, focus) {
         }
         // if ($scope.isStudyMode == false)
         //     focus('focusNext');
-        console.log('changeMode after', $scope.isAnswerMode);
     }
-    $scope.nextWord = function () {
+    $scope.loadPreviousWord = function () {
         $scope.enteredMeaning = "";
         $scope.isAnswerMode = false;
-        $http.get(domain + '/gre_chrome/fetch_word').then(fetchWord);
+        $scope.nextWord = $scope.word;
+        $scope.nextMeaning = $scope.meaning;
+        $scope.word = $scope.previousWord;
+        $scope.meaning = $scope.previousMeaning;
+        $scope.previousWord = null;
+        $scope.previousMeaning = null;
+        $scope.isThereAPrevious = false;
+        if ($scope.isStudyMode == true) {
+            $scope.isStudyMode = false;
+            $scope.switchOnStudyModeAfterPressingNext = true;
+        }
+        else {
+            $scope.isStudyMode = false;
+            $scope.switchOnStudyModeAfterPressingNext = false;
+        }
+    }
+    $scope.loadNextWord = function () {
+        $scope.enteredMeaning = "";
+        $scope.isAnswerMode = false;
+        $scope.previousWord = $scope.word;
+        $scope.previousMeaning = $scope.meaning;
+        $scope.isThereAPrevious = true;
+        if ($scope.nextWord != null) {
+            $scope.word = $scope.nextWord;
+            $scope.meaning = $scope.nextMeaning;
+            $scope.nextWord = null;
+            $scope.nextMeaning = null;
+        }
+        else {
+            $http.get(domain + '/gre_chrome/fetch_word').then(fetchWord);
+        }
         if ($scope.switchOnStudyModeAfterPressingNext == true) {
             $scope.isStudyMode = true;
             focus('focusMe');
         }
-        // if ($scope.isStudyMode == false)
-        //     focus('focusNext');
         $scope.switchOnStudyModeAfterPressingNext = false;
     }
     $scope.submitMeaning = function () {
-        console.log("submitMeaning entered", $scope.enteredMeaning);
         $scope.isAnswerMode = true;
         $scope.isStudyMode = false;
-        // focus('focusNext');
         $scope.switchOnStudyModeAfterPressingNext = true;
         $scope.score = 5;
     }
