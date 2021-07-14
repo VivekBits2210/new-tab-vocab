@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>GRE Flashcard</title>
+    <title>New Tab</title>
     <script src="/lib/angular.min.js" type="text/javascript"></script>
     <script src="/lib/materialize.min.js" type="text/javascript"></script>
     <script src="/js/bridge.js" type="text/javascript"></script>
@@ -27,7 +27,8 @@
                             <form class="col s12 offset-s3">
                                 <div class="input-field col s6 l6">
                                     <input ng-model="$parent.enteredMeaning" ng-if="isStudyMode" id="meaning"
-                                        type="text" />
+                                        type="text" ng-keyup="$event.keyCode == 13 ? $parent.submitMeaning() : null"
+                                        focus-on="focusMe" />
                                     <label ng-if="isStudyMode" for="meaning" class="active">What does it mean?</label>
                                     <div ng-if="isStudyMode==false" class="row">
                                         <p class="flow-text" style="font-size:1.2rem;">{{meaning}}</p>
@@ -45,7 +46,7 @@
                                     <div style="padding-top:1%;">
                                         <a ng-if="isStudyMode" class="waves-effect waves-light black btn"
                                             ng-click="$parent.submitMeaning()"><i
-                                                class="material-icons center">done</i></a>
+                                                class=" material-icons center">done</i></a>
                                         <a class="waves-effect waves-light black btn" ng-click="nextWord()"><i
                                                 class="material-icons center">chevron_right</i></a>
                                     </div>
