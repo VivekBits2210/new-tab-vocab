@@ -1,2 +1,2 @@
 # GRE Chrome extension
-New tab with vocab, chrome extension
+Learn new GRE words every time you open a tab
