@@ -72,6 +72,7 @@ app.controller("HelloController", function ($scope, $http, focus) {
         $scope.switchOnStudyModeAfterPressingNext = false;
     }
     $scope.submitMeaning = function () {
+        $scope.enteredMeaning = $scope.enteredMeaning.toLowerCase().replace(/[^a-z ,']/g, " ");
         $scope.isAnswerMode = true;
         $scope.isStudyMode = false;
         $scope.switchOnStudyModeAfterPressingNext = true;
