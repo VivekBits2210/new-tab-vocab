@@ -3,11 +3,7 @@
     "name": "GRE Practice",
     "version": "0.1",
     "permissions": [
-        "bookmarks",
-        "storage",
-        "sessions",
-        "tabs",
-        "chrome://favicon/"
+        "tabs"
     ],
     "background": {
         "scripts": [
@@ -19,9 +15,7 @@
     },
     "browser_action": {
         "default_icon": {
-            "32": "gre_icon.png",
-            "48": "gre_icon.png",
-            "128": "gre_icon.png"
+            "32": "gre_icon.png"
         }
     }
 }
