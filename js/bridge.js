@@ -41,14 +41,6 @@ app.controller("HelloController", function ($scope, $http, focus) {
         $scope.previousWord = null;
         $scope.previousMeaning = null;
         $scope.isThereAPrevious = false;
-        if ($scope.isStudyMode == true) {
-            $scope.isStudyMode = false;
-            $scope.switchOnStudyModeAfterPressingNext = true;
-        }
-        else {
-            $scope.isStudyMode = false;
-            $scope.switchOnStudyModeAfterPressingNext = false;
-        }
     }
     $scope.loadNextWord = function () {
         $scope.enteredMeaning = "";
