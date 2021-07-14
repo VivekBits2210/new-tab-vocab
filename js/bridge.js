@@ -1,6 +1,17 @@
 var app = angular.module("gre-chrome", [])
 
-app.controller("HelloController", function ($scope) {
+app.controller("HelloController", function ($scope, $http) {
+    var domain = 'http://server.eba-3vcize8p.us-west-2.elasticbeanstalk.com/';
+    $scope.word = "";
+    $scope.meaning = "";
+    function fetchWord(response) {
+        var data = response['data'];
+        $scope.word = data['word'];
+        $scope.meaning = data['meaning'];
+    }
+
+    $http.get(domain + '/gre_chrome/fetch_word').then(fetchWord);
+
     $scope.changeMode = function (is_checkbox) {
         $scope.enteredMeaning = "";
         $scope.isAnswerMode = false;
@@ -14,12 +25,10 @@ app.controller("HelloController", function ($scope) {
     $scope.nextWord = function () {
         $scope.enteredMeaning = "";
         $scope.isAnswerMode = false;
-        $scope.word = "NextWord";
-        $scope.meaning = "Some even more long and complicated, mind blowing meaning"
+        $http.get(domain + '/gre_chrome/fetch_word').then(fetchWord);
         if ($scope.switchOnStudyModeAfterPressingNext == true)
             $scope.isStudyMode = true;
         $scope.switchOnStudyModeAfterPressingNext = false;
-
     }
     $scope.submitMeaning = function () {
         console.log("submitMeaning entered", $scope.enteredMeaning);
@@ -33,6 +42,4 @@ app.controller("HelloController", function ($scope) {
     $scope.isAnswerMode = false;
     $scope.switchOnStudyModeAfterPressingNext = false;
     $scope.isStudyMode = false;
-    $scope.word = "Word";
-    $scope.meaning = "A long line here meant to display a really long and complicated meaning";
 });
