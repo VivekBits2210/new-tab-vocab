@@ -7,8 +7,10 @@
     <script src="/js/bridge.js" type="text/javascript"></script>
 </head>
 
-<body style="height:100%;background: url(background2.jpg)">
-    <div class=" container vertical-center" style="width:40%;" ng-app="gre-chrome" ng-controller="HelloController">
+<body style="height:100%;background-color: black;">
+    <!-- ;background: url(background2.jpg) -->
+    <div class="container vertical-center  ng-cloak" style="width:40%;" ng-app="gre-chrome"
+        ng-controller="HelloController" ng-cloak>
         <div class="row" style="padding-top:2%">
             <div class="col s12 m12 valign center">
                 <div class="card white darken-1">
@@ -41,10 +43,10 @@
                                         </div> -->
                                     </div>
                                     <div style="padding-top:1%;">
-                                        <a ng-if="isStudyMode" class="waves-effect waves-light brown btn"
+                                        <a ng-if="isStudyMode" class="waves-effect waves-light black btn"
                                             ng-click="$parent.submitMeaning()"><i
                                                 class="material-icons center">done</i></a>
-                                        <a class="waves-effect waves-light brown btn" ng-click="nextWord()"><i
+                                        <a class="waves-effect waves-light black btn" ng-click="nextWord()"><i
                                                 class="material-icons center">chevron_right</i></a>
                                     </div>
                                 </div>
@@ -54,8 +56,8 @@
 
 
                     </div>
-                    <div ng-if="isStudyMode" class="card-action brown">
-                        <a class="btn-flat" ng-click="changeMode(false)">I DON'T KNOW</a>
+                    <div ng-if="isStudyMode" class="card-action blue-grey">
+                        <a class="btn-flat" ng-click="changeMode(false)" style="color:white">I DON'T KNOW</a>
                     </div>
                 </div>
             </div>
