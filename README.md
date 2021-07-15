@@ -7,7 +7,7 @@ Learn new GRE words every time you open a tab. Choose your difficulty and switch
 ## License
 [MIT](LICENSE)
 
-## Contributing to pykindler
+## Contributing to new_tab_vocab
 
 All contributions, bug reports, bug fixes, documentation improvements, enhancements, and ideas are welcome.
 Here is what I [plan to do next](https://docs.google.com/document/d/1KMcxtuK0Lma0Jf2fQH_xRt93xYOkk7hXFEcTbkJqY0M/edit?usp=sharing) 
