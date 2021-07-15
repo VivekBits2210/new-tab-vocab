@@ -23,6 +23,25 @@
                                 Study Mode
                             </label>
                         </div>
+                        <div class="switch left" style="display: inline-block; align-content: left;padding-bottom:0.5%">
+                            <p>
+                                <label>
+                                    <input class="with-gap" ng-model="difficulty" name="difficulty" type="radio"
+                                        value=1 />
+                                    <span>Easy</span>
+                                </label> &nbsp;&nbsp;
+                                <label>
+                                    <input class="with-gap" ng-model="difficulty" name="difficulty" type="radio"
+                                        value=2 />
+                                    <span>Medium</span>
+                                </label> &nbsp;&nbsp;
+                                <label>
+                                    <input class="with-gap" ng-model="difficulty" name="difficulty" type="radio"
+                                        value=3 />
+                                    <span>Hard</span>
+                                </label> &nbsp;&nbsp;
+                            </p>
+                        </div>
                         <div class="row" style="margin-bottom: 0px;">
                             <form class="col s12 offset-s3">
                                 <div class="input-field col s6 l6">
@@ -50,8 +69,8 @@
                                         <a ng-if="isStudyMode" class="waves-effect waves-light black btn"
                                             ng-click="$parent.submitMeaning()"><i
                                                 class=" material-icons center">done</i></a>
-                                        <a class="waves-effect waves-light black btn" ng-click="loadNextWord()"><i
-                                                class="material-icons center">chevron_right</i></a>
+                                        <a class="waves-effect waves-light black btn" ng-click="loadNextWord()"
+                                            id="nextButton"><i class="material-icons center">chevron_right</i></a>
                                     </div>
                                 </div>
 

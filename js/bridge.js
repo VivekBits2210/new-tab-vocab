@@ -2,22 +2,26 @@ var app = angular.module("gre-chrome", [])
 
 app.controller("HelloController", function ($scope, $http, focus) {
     var domain = 'http://server.eba-3vcize8p.us-west-2.elasticbeanstalk.com/';
+    var api = '/gre_chrome/fetch_word';
     $scope.word = "";
     $scope.meaning = "";
+    $scope.difficulty = "1";
+    $http.get(domain + api + '?difficulty=' + $scope.difficulty).then(fetchWord); //TODO add difficulty as parameter
     $scope.isThereAPrevious = false;
     $scope.previousWord = null;
     $scope.previousMeaning = null;
     $scope.nextWord = null;
     $scope.nextMeaning = null;
+    $scope.enteredMeaning = "";
+    $scope.isAnswerMode = false;
+    $scope.switchOnStudyModeAfterPressingNext = false;
+    $scope.isStudyMode = false;
 
     function fetchWord(response) {
         var data = response['data'];
         $scope.word = data['word'];
         $scope.meaning = data['meaning'];
     }
-
-    $http.get(domain + '/gre_chrome/fetch_word').then(fetchWord);
-
     $scope.changeMode = function (is_checkbox) {
         $scope.enteredMeaning = "";
         $scope.isAnswerMode = false;
@@ -28,8 +32,10 @@ app.controller("HelloController", function ($scope, $http, focus) {
         else {
             focus('focusMe');
         }
-        // if ($scope.isStudyMode == false)
-        //     focus('focusNext');
+        // if ($scope.isStudyMode == true)
+        //     document.getElementById("nextButton").focus();
+        // else
+        //     document.getElementById("nextButton").blur();
     }
     $scope.loadPreviousWord = function () {
         $scope.enteredMeaning = "";
@@ -41,6 +47,10 @@ app.controller("HelloController", function ($scope, $http, focus) {
         $scope.previousWord = null;
         $scope.previousMeaning = null;
         $scope.isThereAPrevious = false;
+        // if ($scope.isStudyMode == true)
+        //     document.getElementById("nextButton").focus();
+        // else
+        //     document.getElementById("nextButton").blur();
     }
     $scope.loadNextWord = function () {
         $scope.enteredMeaning = "";
@@ -55,13 +65,17 @@ app.controller("HelloController", function ($scope, $http, focus) {
             $scope.nextMeaning = null;
         }
         else {
-            $http.get(domain + '/gre_chrome/fetch_word').then(fetchWord);
+            $http.get(domain + api + '?difficulty=' + $scope.difficulty).then(fetchWord);
         }
         if ($scope.switchOnStudyModeAfterPressingNext == true) {
             $scope.isStudyMode = true;
             focus('focusMe');
         }
         $scope.switchOnStudyModeAfterPressingNext = false;
+        // if ($scope.isStudyMode == true)
+        //     document.getElementById("nextButton").focus();
+        // else
+        //     document.getElementById("nextButton").blur();
     }
     $scope.submitMeaning = function () {
         $scope.enteredMeaning = $scope.enteredMeaning.toLowerCase().replace(/[^a-z ,']/g, " ");
@@ -69,12 +83,11 @@ app.controller("HelloController", function ($scope, $http, focus) {
         $scope.isStudyMode = false;
         $scope.switchOnStudyModeAfterPressingNext = true;
         $scope.score = 5;
+        // if ($scope.isStudyMode == true)
+        //     document.getElementById("nextButton").focus();
+        // else
+        //     document.getElementById("nextButton").blur();
     }
-    $scope.score = 0;
-    $scope.enteredMeaning = "";
-    $scope.isAnswerMode = false;
-    $scope.switchOnStudyModeAfterPressingNext = false;
-    $scope.isStudyMode = false;
 });
 
 app.directive('focusOn', function () {
