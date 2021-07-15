@@ -1,6 +1,9 @@
 # GRE Chrome extension
 Learn new GRE words every time you open a tab. Choose your difficulty and switch between learn and test modes. Write out the meanings yourself in test mode.
 
+## Related repository
+[Django Backend](https://github.com/VivekBits2210/backend_for_gre_chrome_extension) for populating words and meanings
+
 ## License
 [MIT](LICENSE)
 
