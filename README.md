@@ -1,12 +1,8 @@
 # GRE Chrome extension
-Learn new GRE words every time you open a tab
+Learn new GRE words every time you open a tab. Choose your difficulty and switch between learn and test modes. Write out the meanings yourself in test mode.
 
 ## License
 [MIT](LICENSE)
-
-## Getting Help
-
-For usage questions, the best place to go to is [StackOverflow](https://stackoverflow.com/questions/).
 
 ## Contributing to pykindler
 
